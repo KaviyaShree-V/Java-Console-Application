@@ -10,7 +10,8 @@ public class Admin {
         this.adminPin = adminPin;
     }
     public Admin(){
-        viewaTransHis = new ArrayList<>();
+        this.viewaTransHis = new ArrayList<>();
+        this.viewaTransHis.add(new Transactions("Admin","Initial Amount",ATM.balance));
     }
     public String getId(){
 
@@ -22,15 +23,13 @@ public class Admin {
         return adminPin;
     }
 
-    public ArrayList<Transactions> getTransactionHistory() {
+    public  ArrayList<Transactions> getTransactionHistory() {
         return viewaTransHis;
-    }
-    public void addTransaction(String name, String transType, double transAmount) {
-        Transactions transaction = new Transactions(name, transType, transAmount);
-        viewaTransHis.add(transaction);
     }
 
     public static void viewAllUsers() {
         AdminAction.printAllUsers();
     }
 }
+
+
