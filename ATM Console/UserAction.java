@@ -31,9 +31,10 @@ public class UserAction {
     }
 
     public static void enterChoice(Scanner scanner, User user) {
-        while (true) {
-            System.out.println("Enter Choice:\n\t1. Deposit \n\t2. Withdraw \n\t3. Check Balance \n\t4. Change pin \n\t5. View Transaction \n\t6. Exit \n\t7. Main Menu");
-            int choice = Integer.parseInt(scanner.nextLine());
+        int choice = 0;
+        while (choice!=7)  {
+            System.out.println("Enter Choice:\n\t1. Deposit \n\t2. Withdraw \n\t3. Check Balance \n\t4. Change pin \n\t5. View Transaction \n\t6. Exit \n\t7. Finish Process");
+            choice = Integer.parseInt(scanner.nextLine());
             scanner.nextLine();
 
             switch (choice) {
@@ -59,14 +60,10 @@ public class UserAction {
                     break;
                 case 6:
                     System.out.println("Exit from current Page...");
-                    break;
-                case 7:
-                    System.out.println("Main Menu..");
-                    ATM.start();
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid choice.Exiting....");
-                    System.exit(8);
+                    System.exit(7);
             }
         }
     }
@@ -92,43 +89,48 @@ public class UserAction {
 
         System.out.println("The Total Amount=" + amount);
         double cashCount = 0.0;
-
+        Notes twoThousandNotes = new TwoThousand(2000, 0);
         Notes fiveHundredNotes = new FiveHundred(500, 0);
         Notes twoHundredNotes = new TwoHundred(200, 0);
         Notes hundredNotes = new Hundred(100, 0);
 
-        System.out.println("Denominations:\n1. 500 \n2. 200 \n3. 100");
+        System.out.println("Denominations:\n1. 2000 \n2. 500 \n3. 200 \n3. 100");
 
         while (cashCount < amount) {
             System.out.println("Enter your denominations:");
             int g = Integer.parseInt(scanner.nextLine());
-            if (g == 500 || g == 200 || g == 100) {
+            if (g == 500 || g == 200 || g==2000|| g == 100) {
                 System.out.println("Number of " + g + ":");
                 int w = Integer.parseInt(scanner.nextLine());
                 if (g == 500) {
                     fiveHundredNotes.setCount(fiveHundredNotes.getCount() + w);
                     cashCount += g * w;
+                } else if (g == 2000) {
+                    twoThousandNotes.setCount(twoThousandNotes.getCount() + w);
+                    cashCount += g * w;
                 } else if (g == 200) {
                     twoHundredNotes.setCount(twoHundredNotes.getCount() + w);
                     cashCount += g * w;
-                } else if (g == 100) {
+                }else if (g == 100) {
                     hundredNotes.setCount(hundredNotes.getCount() + w);
                     cashCount += g * w;
                 }
                 System.out.println("Total amount in Account: " + cashCount);
             } else {
-                System.out.println("Invalid denomination. Enter 500, 200, or 100.");
+                System.out.println("Invalid denomination. Enter 2000 ,500, 200, or 100.");
             }
         }
 
         if (cashCount == amount) {
             user.setBalance(user.getBalance() + cashCount);
-            user.addTransaction(user.getId(), "Deposit", cashCount);
+            addTransaction(user.getId(), "Deposit", cashCount);
             System.out.println("Deposit Successful. Total Deposited Amount: Rs." + cashCount);
             System.out.println("Denominations deposited:");
+            System.out.println("2000 Notes: " + twoThousandNotes.getCount());
             System.out.println("500 Notes: " + fiveHundredNotes.getCount());
             System.out.println("200 Notes: " + twoHundredNotes.getCount());
             System.out.println("100 Notes: " + hundredNotes.getCount());
+            System.out.println();
         } else {
             System.out.println("Deposit Unsuccessful. The cash count does not match the specified amount.");
         }
@@ -154,7 +156,7 @@ public class UserAction {
         double remainingAmount = amount;
         for (Notes note : ATM.notesList) {
             int noteValue = note.getNote();
-            if (noteValue == 500 || noteValue == 200 || noteValue == 100) {
+            if (noteValue == 500 || noteValue == 200 ||noteValue == 2000 || noteValue == 100) {
                 int notesToDispense = (int) Math.min(remainingAmount / noteValue, note.getCount());
                 if (notesToDispense > 0) {
                     note.setCount(note.getCount() - notesToDispense);
@@ -162,7 +164,7 @@ public class UserAction {
                     remainingAmount -= noteValue * notesToDispense;
                     System.out.println("Rs. " +noteValue + " = " + notesToDispense +"\t notes Dispensed");
                 } else {
-                    System.out.println("Rs." + noteValue + " = 0 notes dispensed");
+                    System.out.println("Rs." + noteValue + " notes are not dispensed");
                 }
             } else {
                 System.out.println("Skipping notes of value: Rs." + noteValue);
@@ -174,7 +176,7 @@ public class UserAction {
 
             ATM.balance -= amount;
             System.out.println("Withdrawal Successful...\n Amount: Rs." + amount);
-            user.getTransactionHistory().add(new Transactions(user.getId(), "Withdraw", amount));
+            User.getTransactionHistory().add(new Transactions(user.getId(), "Withdraw", amount));
             System.out.println("Your Balance : Rs." + userBalance);
         } else {
             System.out.println("Not enough cash in the ATM for this withdrawal.");
@@ -206,12 +208,16 @@ public class UserAction {
             return;
         }
 
-        System.out.println("Transaction History:\n\n");
-        System.out.println("Transaction History for User: " + user.getId());
+        System.out.println("Transaction History:\n");
         for (Transactions transaction : transactionHistory) {
             System.out.println("Name: " + transaction.getName());
             System.out.println("Type: " + transaction.getTransType());
             System.out.println("Amount: " + transaction.getTransAmount());
+            System.out.println();
         }
+    }
+    public static void addTransaction(String name, String transType, double transAmount) {
+        Transactions transaction = new Transactions(name, transType, transAmount);
+        User.getTransactionHistory().add(transaction);
     }
 }
