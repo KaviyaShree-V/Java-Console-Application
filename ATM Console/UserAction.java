@@ -1,32 +1,35 @@
 import java.util.*;
 
 public class UserAction {
+
     public static User user(Scanner scanner) {
+        System.out.println("Enter User Name:");
+        String enteredName = scanner.nextLine();
+        User validUser = null;
+        for (User user : ATM.getUsers()) {
+            if (user.getId().equals(enteredName)) {
+                validUser = user;
+                break;
+            }
+        }
+        if (validUser == null) {
+            System.out.println("User not found. Returning to login.");
+            return null;
+        }
         int retry = 0;
         while (retry < 3) {
-            System.out.println("Enter User Name:");
-            String enteredName = scanner.nextLine();
             System.out.println("Enter the Pin:");
             String enteredPin = scanner.nextLine();
-            User validUser = null;
-            for (User user : ATM.getUsers()) {
-                if (user.getId().equals(enteredName) && user.getPin().equals(enteredPin)) {
-                    validUser = user;
-                    break;
-                }
-            }
 
-            if (validUser != null) {
+            if (validUser.getPin().equals(enteredPin)) {
                 return validUser;
             } else {
                 retry++;
-                System.out.println("No User Found.\n " + (3 - retry) + " attempts remaining...");
-                if (retry == 3) {
-                    System.out.println("Maximum login attempts exceeded.");
-                    return null;
-                }
+                System.out.println("Incorrect PIN. " + (3 - retry) + " attempts remaining...");
             }
         }
+
+        System.out.println("Maximum login attempts exceeded. Returning to login.");
         return null;
     }
 
