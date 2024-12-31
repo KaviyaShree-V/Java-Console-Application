@@ -8,9 +8,6 @@ public class Admin {
     public Admin(String adminName , String adminPin){
         this.adminName = adminName;
         this.adminPin = adminPin;
-    }
-    public Admin(){
-        this.viewaTransHis = new ArrayList<>();
         this.viewaTransHis.add(new Transactions("Admin","Initial Amount",ATM.balance));
     }
     public String getId(){
