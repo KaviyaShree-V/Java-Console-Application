@@ -3,33 +3,37 @@ import java.util.*;
 public class AdminAction extends ATM {
 
     public static Admin admin() {
-        int retry = 0;
-        while (retry < 3) {
-            System.out.println("Enter Admin Name:");
-            String enteredName = scanner.nextLine();
-            System.out.println("Enter the Pin:");
-            String enteredPin = scanner.nextLine();
-            Admin validAdmin = null;
-            for (Admin admin : ATM.getAdmins()) {
-                if (admin.getId().equals(enteredName) && admin.getPin().equals(enteredPin)) {
-                    validAdmin = admin;
-                    break;
-                }
-            }
-
-            if (validAdmin != null) {
-                return validAdmin;
-            } else {
-                retry++;
-                System.out.println("No User Found.\n " + (3 - retry) + " attempts remaining...");
-                if (retry == 3) {
-                    System.out.println("Maximum login attempts exceeded.");
-                    return null;
-                }
+        System.out.println("Enter Admin Name:");
+        String enteredName = scanner.nextLine();
+        Admin validUser = null;
+        for(Admin admin: ATM.getAdmins()) {
+            if (admin.getId().equals(enteredName)) {
+                validUser = admin;
+                break;
             }
         }
+        if (validUser==null){
+                System.out.println("User not found. Returning to login.");
+                return null;
+            }
+        int retry = 0;
+        while (retry < 3) {
+            System.out.println("Enter the Pin:");
+            String enteredPin = scanner.nextLine();
+
+            if (validUser.getPin().equals(enteredPin)) {
+                return validUser;
+            } else {
+                retry++;
+                System.out.println("Incorrect PIN. " + (3 - retry) + " attempts remaining...");
+            }
+        }
+
+        System.out.println("Maximum login attempts exceeded. Returning to login.");
         return null;
     }
+
+
 
     public static void enterChoice(Admin admin) {
         int choice = 0;
@@ -84,7 +88,6 @@ public class AdminAction extends ATM {
         ATM.getUsers().add(newUser);
         System.out.println("New user added successfully.");
         addNTransaction(newName, "Deposit", newBalance,admin);
-        //Admin.getTransactionHistory(new Transactions(newName, "Deposit", newBalance));
     }
 
 
