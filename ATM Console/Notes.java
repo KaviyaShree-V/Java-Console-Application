@@ -1,31 +1,26 @@
 public class Notes {
-    private int note;
-    private int count;
+    private int note;//field to store the note
+    private int count;//field to store the count of a note
 
+    // Constructor to initialize the Notes object with note and count
     public Notes(int note,int count){
-        this.note= note;
-        this.count=count;
+        this.note= note;// reassigns the note field
+        this.count=count;// reassigns the count field
     }
 
-    public Notes() {
-        return;
-    }
-
+    //getNote method to get the note
     public  int getNote(){
-        return note;
+        return note;//return the note value
     }
 
-    public int setNote(int note){
-        this.note=note;
-        return note;
-    }
-
+    //getCount method to get the count of a each note
     public  int getCount(){
-        return count;
+        return count;//return the count of a note
     }
 
+    //setCount method to set the count value for each note
     public int setCount(int count){
-        this.count=count;
-        return count;
+        this.count=count;//reassign the count value for each note
+        return count;//return the value of a count
     }
 }
