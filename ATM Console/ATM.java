@@ -90,7 +90,7 @@ public class ATM {
         int choice = 0; // Initialize 'choice' variable to store the admin's menu choice.
         //Loop starts and continues & if choice is 7 the will be exited
         while (choice != 7) {
-            System.out.println("Enter Choice:\n\t1. Add User \n\t2. Delete User \n\t3. Deposit to ATM \n\t4. Balance in ATM \n\t5. View All Users  \n\t6. View Transactions \n\t7. Exit \n\t8. Finish Process");
+            System.out.println("Enter Choice:\n\t1. Add User \n\t2. Delete User \n\t3. Deposit to ATM \n\t4. Balance in ATM \n\t5. View All Users  \n\t6. View Transactions \n\t7. Specific Users Trans History \n\t8. Exit \n\t9. Finish Process");
             choice = Integer.parseInt(scanner.nextLine());//to get the choice from the admin to visit the admin required page
 
             //case for the admin choice using switch
@@ -121,11 +121,15 @@ public class ATM {
                     AdminAction.viewaTransHis(admin);// Call the method to viewTransHis, passing the current admin object
                     break;
                 case 7:
+                    System.out.println("Redirecting to Specific User Transaction Page....");
+                    AdminAction.specificUser(scanner);// Call the method to viewTransHis, passing the current scanner object
+                    break;
+                case 8:
                     System.out.println("Exit Current Page...");
                     return;// Exit the loop and return to the previous page
                 default:
                     System.out.println("Process Completed.....");
-                    System.exit(8);// // Exit the program if invalid choice
+                    System.exit(9);// // Exit the program if invalid choice
             }
         }
     }
