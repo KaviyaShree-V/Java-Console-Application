@@ -27,7 +27,7 @@ Watch the project demo video below to see how the ATM system works:
 
 Here are some screenshots of the ATM interface:
 
-![ATM class Diagram]([C:\Users\Admin\Documents\ATMEXx.png](https://github.com/KaviyaShree-V/Java-Console-Application/edit/main/ATM%20Console/ATMEXx.png))
+![ATM class Diagram](https://github.com/KaviyaShree-V/Java-Console-Application/edit/main/ATM%20Console/ATMEXx.png)
 *Class Diagram*
 
 ## Installation
