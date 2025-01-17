@@ -35,4 +35,39 @@ Follow these steps to install and run the ATM project:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/ATMProject.git
+   git clone https://github.com/KaviyaShree-V/Java-Console-Application
+
+2. **Open the project**:
+   cd ATMConsole
+
+3. **Compile**:
+   javac ATMConsole.java
+   
+5. **Run**:
+   java ATMConsole
+     
+## Usage
+
+### **User Instructions**
+1. Log in using your account number and PIN.
+2. Select an option from the menu:
+   - **Withdraw Money**
+   - **Deposit Money**
+   - **Check Balance**
+   - **Change PIN**
+   - **View Transaction History**
+
+---
+
+### **Admin Instructions**
+1. Log in using the admin account ID and PIN.
+2. Access the admin menu:
+   - **Deposit Cash in ATM**
+   - **Manage User Accounts**
+   - **Check Balance in ATM**
+   - **View Transactions**:
+     - Admin Transactions
+     - All Users' Transactions
+     - Specific User Transactions
+
+
