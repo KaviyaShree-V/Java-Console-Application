@@ -8,13 +8,15 @@ The **ATM Project** is a fully functional simulation of an Automated Teller Mach
 - **Real-world Financial Transactions**: It simulates real-world banking tasks like balance inquiry, cash withdrawal, and deposit, offering a realistic user experience.
 - 
 - **User Authentication**: Ensures that only authorized users can perform actions on the system by implementing secure login features.
+- 
 ## Features
-The ATM System includes the following features:
-- **Balance Inquiry**: View the current account balance.
-- **Withdraw Funds**: Secure withdrawal of funds from the ATM.
-- **Deposit Funds**: Add money to the account.
-- **Change PIN**: Update your personal identification number.
-- **Transaction History**: View a log of recent transactions.
+The ATM Project includes the following features:
+- **User Authentication**: Secure login with account credentials.
+- **Balance Inquiry**: Check current account balance.
+- **Cash Deposit**: Add funds to the account.
+- **Cash Withdrawal**: Withdraw funds with balance validation.
+- **Transaction History**: View the list of recent transactions.
+- **Logout Option**: Securely exit the system after use
 
 ## Project Demo
 Watch the project demo video below to see how the ATM system works:
@@ -23,11 +25,8 @@ Watch the project demo video below to see how the ATM system works:
 
 *Replace `VIDEO_ID` with the actual video ID from YouTube.*
 
-## Screenshots
-
-Here are some screenshots of the ATM interface:
-
-![ATM class Diagram](https://github.com/KaviyaShree-V/Java-Console-Application/edit/main/ATM%20Console/ATMEXx.png)
+## Reference:
+![ATM class Diagram](https://github.com/KaviyaShree-V/Java-Console-Application/blob/main/ATM%20Console/ATMEXx.png?raw=true)
 *Class Diagram*
 
 ## Installation
