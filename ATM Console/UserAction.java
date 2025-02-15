@@ -137,7 +137,12 @@ public class UserAction {
         // Variables to track notes dispensed for each denomination
         int count2000 = 0, count500=0 ,count200 = 0,count100 = 0;
 
-        for (Notes note : ATM.getNotesList()) {
+
+
+
+
+
+        for (Notes note : ATM.getNotesList().getALLNotes()) {
             int noteValue = note.getNote(); // Get the note value
             int dispenseNotes = 0; // to check the withdraw notes
 

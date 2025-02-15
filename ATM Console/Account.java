@@ -19,6 +19,6 @@ public class Account {
         this.pin = pin;
     }
     public  ArrayList<Transactions> getTransactionHistory() {
-        return transactions;
+        return this.transactions;
     }
 }

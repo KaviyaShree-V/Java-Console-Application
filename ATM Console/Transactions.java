@@ -1,12 +1,12 @@
 public class Transactions {
     private String name; //field to store the name
-    private String TransType; //field to store the type of transaction (deposit  or withdraw)
+    private String transType; //field to store the type of transaction (deposit  or withdraw)
     private double transAmount; // field to store the amount in the transaction
 
     // Constructor to initialize the Transactions object with name, transaction type & amount
     public Transactions(String name, String TransType, double transAmount) {
         this.name = name; // Assigns the name parameter to the name field
-        this.TransType = TransType; // Assigns the TransType parameter to the TransType field
+        this.transType = TransType; // Assigns the transType parameter to the transType field
         this.transAmount = transAmount; // Assigns the transAmount parameter to the transAmount field
     }
 
@@ -17,7 +17,7 @@ public class Transactions {
 
     // getTransType method to get the type of the transaction
     public String getTransType() {
-        return TransType; // Returns the value of the TransType
+        return transType; // Returns the value of the transType
     }
 
     // getTransAmount method to get the amount of the transaction

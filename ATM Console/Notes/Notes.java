@@ -1,6 +1,6 @@
 package Notes;
 
-public class Notes {
+public class Notes{
     private int note;//field to store the note
     private int count;//field to store the count of a note
 

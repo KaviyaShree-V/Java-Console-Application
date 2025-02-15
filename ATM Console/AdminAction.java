@@ -91,10 +91,10 @@ public class AdminAction {
         System.out.println("Your Balance is: Rs." + ATM.balance);
         // Display the count of various denominations of notes in the ATM
         System.out.println("Balance in notes:");
-        System.out.println("Notes.Notes 500 - " + ATM.getNotesList().get(0).getCount());
-        System.out.println("Notes.Notes 200 - " + ATM.getNotesList().get(2).getCount());
-        System.out.println("Notes.Notes 2000 - " + ATM.getNotesList().get(1).getCount());
-        System.out.println("Notes.Notes 100 - " + ATM.getNotesList().get(3).getCount());
+        System.out.println("Notes 500 - " + ATM.getNotesList().getNotes(0).toString());
+        System.out.println("Notes 200 - " + ATM.getNotesList().getNotes(2).toString());
+        System.out.println("Notes 2000 - " + ATM.getNotesList().getNotes(1).toString());
+        System.out.println("Notes 100 - " + ATM.getNotesList().getNotes(3).toString());
     }
 
 
@@ -118,7 +118,7 @@ public class AdminAction {
         Notes twoHundredNotes = new TwoHundred(200, 0);
         Notes hundredNotes = new Hundred(100, 0);
         //Loop for notes in ATM and assigning the variables for respective notes
-        for (Notes note : ATM.getNotesList()) {
+        for (Notes note : ATM.getNotesList().getALLNotes()) {
             if (note.getNote() == 2000) {
                 twoThousandNotes = note;
             } else if (note.getNote() == 500) {
@@ -169,36 +169,48 @@ public class AdminAction {
         }
     }
 
+
     public static void specificUser(Scanner scanner) {
-        System.out.println("Enter the Username:");
-        String enteredName = scanner.nextLine();
-        System.out.println("Enter the Pin:");
-        String enteredPin = scanner.nextLine();
+        System.out.print("Enter Username to view transactions: ");
+        String username = scanner.nextLine(); // Get the username from the admin
 
-        User validUser = null;
+        // Find the user account with the given username
+        Account user = ATM.findUserByUsername(username);
 
-        // Iterating through account users to find a match
-        for (Account account : ATM.getAccountUser()) {
-            if (account instanceof User) {
-                User user = (User) account;
-                if (user.getName().equals(enteredName)) { // Match username
-                    validUser = user;
-                    // Optional: Validate PIN if needed
-                    if (user.getPin().equals(enteredPin)) { // Assuming User has a getPin() method
-                        System.out.println(user.getTransactionHistory());
-                    } else {
-                        System.out.println("Incorrect PIN.");
+        // Check if the user exists and is an instance of User
+        if (user != null && user instanceof User) {
+            User specificUser = (User) user; // Cast the account to User
+            System.out.println("Transaction History for User: " + specificUser.getName());
+
+            // Get the user's transaction history
+            ArrayList<Transactions> transactions = specificUser.getTransactionHistory();
+
+            // Display ttransactions if any exist
+            if (transactions.isEmpty()) {
+                System.out.println("No transactions found for this user.");
+            } else {
+                boolean hasUserTransactions = false; // Flag to check if there are any ttransactions by the user
+                for (Transactions transaction : transactions) {
+                    // Display only ttransactions performed by this user
+                    if (transaction.getName().equals(specificUser.getName())) {
+                        System.out.println("Performed By: " + transaction.getName());
+                        System.out.println("Type: " + transaction.getTransType());
+                        System.out.println("Amount: " + transaction.getTransAmount());
+                        System.out.println("-------------------------------");
+                        hasUserTransactions = true;
                     }
-                    break; // Exit loop as the user is found
+                }
+
+                // If no ttransactions were performed by the user, print a message
+                if (!hasUserTransactions) {
+                    System.out.println("No ttransactions performed by this user.");
                 }
             }
-        }
-        if (validUser == null) {
+        } else {
+            // User not found or invalid type
             System.out.println("User not found.");
         }
     }
-
-
     public static void printAllUsers() {
         // Loop for the list of users and print userNAme
         for (Account account : ATM.getAccountUser()) {

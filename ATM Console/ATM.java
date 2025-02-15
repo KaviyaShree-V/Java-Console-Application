@@ -2,7 +2,7 @@ import ListOfNotes.FiveHundred;
 import ListOfNotes.Hundred;
 import ListOfNotes.TwoHundred;
 import ListOfNotes.TwoThousand;
-import Notes.Notes;
+import Notes.*;
 
 
 import java.util.*;
@@ -18,7 +18,7 @@ public class ATM {
     //All arrayList is declared as static because the admins , users and the note list will be same in all ATM it doesn't differ for every ATM
 //    private static ArrayList<Admin> admins = new ArrayList<>();//creating arraylist for storing admin name and pins
 //    private static ArrayList<User> users = new ArrayList<>();//creating arraylist for storing user name and pins
-    protected static ArrayList<Notes> notesList = new ArrayList<>();//creating arraylist for storing note count and value
+    protected static Note<Notes> notesList = new Note<Notes>();//creating arraylist for storing note count and value
     //static ArrayList<Notes> withdrawalNotes = new ArrayList<>();
     static double balance = 0.0;//Initializing the ATM balance as 0.0
 
@@ -26,10 +26,10 @@ public class ATM {
         accountUser.add(new Admin("SRP", "2453"));
 //        accountUser.add(new Admin("Mickey", "1234"));
 
-        notesList.add(new FiveHundred(500, 0));
-        notesList.add(new TwoThousand(2000, 0));
-        notesList.add(new TwoHundred(200, 0));
-        notesList.add(new Hundred(100, 0));
+        notesList.addNotes(new FiveHundred(500, 0));
+        notesList.addNotes(new TwoThousand(2000, 0));
+        notesList.addNotes(new TwoHundred(200, 0));
+        notesList.addNotes(new Hundred(100, 0));
     }
 
     public static void start() {//Start method to login
@@ -173,15 +173,24 @@ public class ATM {
         }
     }
 
-    //getAdmins() & getUsers() methods always stores and returns the admins and users, so it is declared as static
-    public static ArrayList<Account> getAdmins() {
-        //method to get the admin name and pin list from array
+    static Account findUserByUsername(String username) {
+        // Method to find a user by their username
 
-        return accountUser;
+        for (Account account : accountUser) {
+            // Loop through the list of users
+
+            if (account.getName().equals(username)) {
+                // Checks if the username matches
+
+                return account;  // Returns the matched user
+            }
+        }
+
+        return null;  // Returns null if no matching user is found
     }
 
-    public static ArrayList<Notes> getNotesList(){
-        //method to get the user name and pin list from array
+    public static Note<Notes> getNotesList(){
+        //method to get the note count from array
         return notesList;
     }
 
