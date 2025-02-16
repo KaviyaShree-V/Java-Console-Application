@@ -41,7 +41,7 @@ public class UserAction {
     }
 
 
-    public static void checkBalance(Scanner scanner, User user) {
+    public static void checkBalance( User user) {
         // to display the current balance of the user
         System.out.println("Your Balance is: Rs." + user.getBalance());
 
@@ -87,7 +87,7 @@ public class UserAction {
                 } else if (g == 200) {
                     twoHundredNotes.setCount(twoHundredNotes.getCount() + w);// Update the count of 200 denomination note
                     cashCount += g * w; // Add the total value of 200 denomination notes to cashCount
-                } else if (g == 100) {
+                } else{
                     hundredNotes.setCount(hundredNotes.getCount() + w);// Update the count of 100 denomination note
                     cashCount += g * w; // Add the total value of 100 denomination notes to cashCount
                 }

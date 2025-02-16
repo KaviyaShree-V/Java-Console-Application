@@ -1,6 +1,6 @@
 package Notes;
 
-public class Notes{
+public abstract class Notes{
     private int note;//field to store the note
     private int count;//field to store the count of a note
 
@@ -24,5 +24,10 @@ public class Notes{
     public int setCount(int count){
         this.count=count;//reassign the count value for each note
         return count;//return the value of a count
+    }
+
+    @Override
+    public String toString() {
+        return "Rs." + note + " - " + count;
     }
 }

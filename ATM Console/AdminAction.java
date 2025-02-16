@@ -86,15 +86,26 @@ public class AdminAction {
         }
     }
 
+//    public static void checkBalance() {
+//        // Display the current balance in the ATM
+//        System.out.println("Your Balance is: Rs." + ATM.balance);
+//        // Display the count of various denominations of notes in the ATM
+//        System.out.println("Balance in notes:");
+//        System.out.println("Notes 500 - " + ATM.getNotesList().getNotes(500).toString());
+//        System.out.println("Notes 200 - " + ATM.getNotesList().getNotes(200).toString());
+//        System.out.println("Notes 2000 - " + ATM.getNotesList().getNotes(2000).toString());
+//        System.out.println("Notes 100 - " + ATM.getNotesList().getNotes(100).toString());
+//    }
+
     public static void checkBalance() {
-        // Display the current balance in the ATM
         System.out.println("Your Balance is: Rs." + ATM.balance);
-        // Display the count of various denominations of notes in the ATM
         System.out.println("Balance in notes:");
-        System.out.println("Notes 500 - " + ATM.getNotesList().getNotes(0).toString());
-        System.out.println("Notes 200 - " + ATM.getNotesList().getNotes(2).toString());
-        System.out.println("Notes 2000 - " + ATM.getNotesList().getNotes(1).toString());
-        System.out.println("Notes 100 - " + ATM.getNotesList().getNotes(3).toString());
+
+        for (Notes note : ATM.getNotesList().getALLNotes()) {
+            if (note != null) {
+                System.out.println(note.toString());
+            }
+        }
     }
 
 
@@ -119,14 +130,16 @@ public class AdminAction {
         Notes hundredNotes = new Hundred(100, 0);
         //Loop for notes in ATM and assigning the variables for respective notes
         for (Notes note : ATM.getNotesList().getALLNotes()) {
-            if (note.getNote() == 2000) {
-                twoThousandNotes = note;
-            } else if (note.getNote() == 500) {
-                fiveHundredNotes = note;
-            } else if (note.getNote() == 200) {
-                twoHundredNotes = note;
-            } else if (note.getNote() == 100) {
-                hundredNotes = note;
+            if (note!= null) {
+                if (note.getNote() == 2000) {
+                    twoThousandNotes = note;
+                } else if (note.getNote() == 500) {
+                    fiveHundredNotes = note;
+                } else if (note.getNote() == 200) {
+                    twoHundredNotes = note;
+                } else if (note.getNote() == 100) {
+                    hundredNotes = note;
+                }
             }
         }
 

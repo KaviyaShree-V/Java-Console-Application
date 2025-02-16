@@ -1,24 +1,19 @@
 package Notes;
 
-import java.util.Arrays;
+import ListOfNotes.*;
+
 
 public class Note<T extends Notes> {
     private T[] size= (T[]) new Notes[4];
-    Notes note2000;
-    Notes note500;
-    Notes note200;
-    Notes note100;
-
     int index =0;
 
     public Note() {
-        note2000 = new Notes(2000,0);
-        note200=new Notes(200,0);
-        note500=new Notes(500,0);
-        note100=new Notes(100,0);
-
+        // Initialize array with default values to avoid null pointer exception
+        size[0] = (T) new TwoThousand(2000, 0);
+        size[1] = (T) new FiveHundred(500, 0);
+        size[2] = (T) new TwoHundred(200, 0);
+        size[3] = (T) new Hundred(100, 0);
     }
-
     public void addNotes(T note) {
         if (size.length < 4) {
             this.size[index] = note;
@@ -34,9 +29,7 @@ public class Note<T extends Notes> {
         T size1 = note;
         return size1;
     }
-//    public T oneNote(T oneNote){
-//        return oneNote;
-//    }
+
     public T[] getALLNotes(){
         return size;
     }

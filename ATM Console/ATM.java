@@ -3,8 +3,6 @@ import ListOfNotes.Hundred;
 import ListOfNotes.TwoHundred;
 import ListOfNotes.TwoThousand;
 import Notes.*;
-
-
 import java.util.*;
 
 public class ATM {
@@ -16,8 +14,6 @@ public class ATM {
 
     private static ArrayList<Account> accountUser = new ArrayList<>();
     //All arrayList is declared as static because the admins , users and the note list will be same in all ATM it doesn't differ for every ATM
-//    private static ArrayList<Admin> admins = new ArrayList<>();//creating arraylist for storing admin name and pins
-//    private static ArrayList<User> users = new ArrayList<>();//creating arraylist for storing user name and pins
     protected static Note<Notes> notesList = new Note<Notes>();//creating arraylist for storing note count and value
     //static ArrayList<Notes> withdrawalNotes = new ArrayList<>();
     static double balance = 0.0;//Initializing the ATM balance as 0.0
@@ -26,10 +22,10 @@ public class ATM {
         accountUser.add(new Admin("SRP", "2453"));
 //        accountUser.add(new Admin("Mickey", "1234"));
 
-        notesList.addNotes(new FiveHundred(500, 0));
-        notesList.addNotes(new TwoThousand(2000, 0));
-        notesList.addNotes(new TwoHundred(200, 0));
-        notesList.addNotes(new Hundred(100, 0));
+        notesList.addNotes(new FiveHundred(500, 0){});
+        notesList.addNotes(new TwoThousand(2000, 0){});
+        notesList.addNotes(new TwoHundred(200, 0){});
+        notesList.addNotes(new Hundred(100, 0){});
     }
 
     public static void start() {//Start method to login
@@ -153,7 +149,7 @@ public class ATM {
                     break;
                 case 3:
                     System.out.println("Redirecting to Check Balance Page....");
-                    UserAction.checkBalance(scanner, user);// Calling Method for checking balance
+                    UserAction.checkBalance( user);// Calling Method for checking balance
                     break;
                 case 4:
                     System.out.println("Redirecting to Change Pin Page....");
@@ -202,6 +198,6 @@ public class ATM {
 
     public void setBalance(double balance) {
         // to set the balance in ATM when deposited
-        this.balance = balance;//to update the current balance
+        ATM.balance = balance;//to update the current balance
     }
 }
