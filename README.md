@@ -21,9 +21,7 @@ The ATM Project includes the following features:
 ## Project Demo
 Watch the project demo video below to see how the ATM system works:
 
-[![ATM Demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
-
-*Replace `VIDEO_ID` with the actual video ID from YouTube.*
+[![ATM Demo](https://github.com/KaviyaShree-V/Java-Console-Application/blob/main/ATM%20Console/DEMO_VEDIO.mp4)](https://github.com/KaviyaShree-V/Java-Console-Application/blob/main/ATM%20Console/DEMO_VEDIO.mp4)
 
 ## Reference:
 ![ATM class Diagram](https://github.com/KaviyaShree-V/Java-Console-Application/blob/main/ATM%20Console/ATMEXx.png?raw=true)
